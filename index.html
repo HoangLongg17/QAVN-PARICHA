@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PARICHA | Quán ăn ghép đôi</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="brand-wrap">
+    <div class="brand">
+      <span>PARICHA</span>
+      <small>shared table dining</small>
+    </div>
+  </div>
+  <div id="session" class="session-shell">
+    <div class="header-auth-actions">
+      <button class="auth-button" id="loginPromptBtn" type="button">Đăng nhập</button>
+      <button class="auth-button secondary" id="registerPromptBtn" type="button">Đăng ký</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="authView" class="view">
+    <div class="hero-banner card">
+      <div class="hero-copy">
+        <span class="eyebrow">Mô hình quán ăn ghép đôi</span>
+        <h1>Ăn cùng một người bạn chưa từng biết</h1>
+        <p>PARICHA kết nối người dùng theo trải nghiệm ăn uống an toàn, ấm áp và trọn vẹn. Mỗi bàn dành cho tối đa 2 người, mỗi người chỉ thấy sự phù hợp cần thiết để tạo ra một buổi tối thú vị.</p>
+        <div class="feature-list">
+          <span>✓ Đặt phiếu & chọn yêu cầu</span>
+          <span>✓ Admin duyệt & ghép nối</span>
+          <span>✓ Ẩn thông tin cá nhân</span>
+          <span>✓ Theo dõi uy tín & lịch sử</span>
+        </div>
+      </div>
+        <div class="mini-card highlight">
+          <strong>2 người / bàn</strong>
+          <span>ghép đôi thông minh</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <div class="info-card card">
+        <h2>Về không gian quán</h2>
+        <p>Không gian mở, nhã nhặn và đậm chất gặp gỡ. Bàn ăn được thiết kế theo mô hình ghép đôi, tạo cảm giác mới mẻ nhưng vẫn riêng tư.</p>
+        <ul>
+          <li>Phòng bàn sáng tạo, dễ trò chuyện.</li>
+          <li>Đặt phiếu với yêu cầu cá nhân.</li>
+          <li>Admin duyệt và ghép nối tự động dựa trên đặc điểm chung.</li>
+        </ul>
+      </div>
+      <div class="info-card card">
+        <h2>Quy trình đặt phiếu</h2>
+        <p>Bạn đặt phiếu với ngày giờ và yêu cầu về đối phương. Admin sẽ duyệt và ghép nối với phiếu khác nếu phù hợp. Khi ghép thành công, tiến hành đặt cọc qua chuyển khoản.</p>
+        <ul>
+          <li>Trạng thái phiếu: Hủy, Đang chờ, Ghép thành công, Đặt cọc thành công.</li>
+          <li>Khách ghép không nhìn thấy tên, số điện thoại, email.</li>
+          <li>Hồ sơ cá nhân có thể cập nhật trực tiếp sau khi đăng nhập.</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="card model-section">
+      <div class="section-heading">
+        <span class="eyebrow">Sơ đồ mô hình quán</span>
+        <h2>Mô hình thiết kế quán ăn</h2>
+      </div>
+      <div class="model-image-wrap">
+        <img src="assets/images/mohinh.png" alt="Sơ đồ mô hình thiết kế quán ăn" />
+      </div>
+    </section>
+
+    <div class="auth-container">
+      <form id="loginForm" class="card auth-card active">
+        <h2>Đăng nhập</h2>
+        <label>Số điện thoại *<input id="loginPhone" required placeholder="Nhập số điện thoại"></label>
+        <label>Mật khẩu *<input id="loginPassword" type="password" required placeholder="Nhập mật khẩu"></label>
+        <button type="submit">Đăng nhập</button>
+      </form>
+
+      <form id="registerForm" class="card auth-card">
+        <h2>Đăng ký thành viên</h2>
+        <label>Số điện thoại *<input id="regPhone" required placeholder="09xxxxxxxx"></label>
+        <label>Email (nếu có)<input id="regEmail" type="email" placeholder="email@example.com"></label>
+        <label>Tên đầy đủ *<input id="regName" required placeholder="Nhập tên của bạn"></label>
+        <label>Giới tính *
+          <select id="regGender" required>
+            <option value="">-- Chọn giới tính --</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
+          </select>
+        </label>
+        <label>Ngày sinh *<input id="regDob" type="date" required></label>
+        <label>Giới tính mong muốn
+          <select id="regPreferredGender">
+            <option value="">Không yêu cầu</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
+          </select>
+        </label>
+        <label>Độ tuổi mong muốn
+          <select id="regPreferredAge">
+            <option value="">Không yêu cầu</option>
+            <option value="18-25">18-25</option>
+            <option value="26-35">26-35</option>
+            <option value="36-45">36-45</option>
+            <option value="46+">46+</option>
+          </select>
+        </label>
+        <label>Nghề nghiệp
+          <select id="regOccupation">
+            <option value="">Không yêu cầu</option>
+            <option value="Sinh viên">Sinh viên</option>
+            <option value="Nhân viên văn phòng">Nhân viên văn phòng</option>
+            <option value="Kỹ sư">Kỹ sư</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Giáo viên">Giáo viên</option>
+            <option value="Khác">Khác</option>
+          </select>
+        </label>
+        <label>Ưa thích ẩm thực
+          <select id="regFavoriteCuisine">
+            <option value="">Không yêu cầu</option>
+            <option value="Việt Nam">Việt Nam</option>
+            <option value="Hàn Quốc">Hàn Quốc</option>
+            <option value="Nhật Bản">Nhật Bản</option>
+            <option value="Mỹ">Mỹ</option>
+            <option value="Ý">Ý</option>
+            <option value="Đài Loan">Đài Loan</option>
+          </select>
+        </label>
+        <label>Tính cách
+          <select id="regPersonality">
+            <option value="">Không yêu cầu</option>
+            <option value="Hòa đồng">Hòa đồng</option>
+            <option value="Tĩnh lặng">Tĩnh lặng</option>
+            <option value="Năng động">Năng động</option>
+            <option value="Lịch sự">Lịch sự</option>
+            <option value="Nhiệt tình">Nhiệt tình</option>
+          </select>
+        </label>
+        <label>Sở thích chính
+          <select id="regPreferredInterest">
+            <option value="">Không yêu cầu</option>
+            <option value="Du lịch">Du lịch</option>
+            <option value="Ẩm thực">Ẩm thực</option>
+            <option value="Âm nhạc">Âm nhạc</option>
+            <option value="Phim">Phim</option>
+            <option value="Thể thao">Thể thao</option>
+            <option value="Đọc sách">Đọc sách</option>
+          </select>
+        </label>
+        <label>Mật khẩu *<input id="regPassword" type="password" required placeholder="Ít nhất 6 ký tự"></label>
+        <button type="submit">Đăng ký tài khoản</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="appView" class="view hidden">
+    <div class="grid three">
+      <div class="card stat"><span>Uy tín</span><strong id="reputation">100</strong><small>Hủy phiếu: -20 / lần</small></div>
+      <div class="card stat"><span>Phiếu hiện tại</span><strong id="myTicket">-</strong><small>1 phiếu / lần</small></div>
+      <div class="card stat"><span>Thông báo</span><strong id="noticeCount">0</strong><small>Ghép đôi & trạng thái</small></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="tickets">Đặt phiếu</button>
+      <button class="tab" data-tab="mytickets">Phiếu của tôi</button>
+      <button class="tab" data-tab="notifications">Thông báo</button>
+      <button class="tab" data-tab="profile">Hồ sơ</button>
+    </div>
+
+    <div id="ticketsTab" class="tabContent">
+      <div class="card">
+        <h2>Đặt phiếu mới</h2>
+        <p class="muted">Chọn ngày giờ và yêu cầu về đối phương. Admin sẽ duyệt và ghép nối với phiếu phù hợp.</p>
+        <button type="button" id="newTicketBtn" class="btn-primary">+ Đặt phiếu mới</button>
+        <div id="ticketList" class="ticketList" style="margin-top: 20px;"></div>
+      </div>
+    </div>
+
+    <div id="myticketsTab" class="tabContent hidden">
+      <div class="card">
+        <h2>Phiếu đặt của tôi</h2>
+        <div id="myTicketList"></div>
+      </div>
+    </div>
+
+    <div id="notificationsTab" class="tabContent hidden">
+      <div class="card">
+        <h2>Thông báo gần đây</h2>
+        <div id="notificationList"></div>
+      </div>
+    </div>
+
+    <div id="profileTab" class="tabContent hidden">
+      <div id="profilePanel" class="profile-board"></div>
+    </div>
+  </section>
+</main>
+
+<div id="accountMenu" class="account-menu hidden">
+  <button type="button" class="menu-item" data-action="profile">Hồ sơ cá nhân</button>
+  <button type="button" class="menu-item" data-action="logout">Đăng xuất</button>
+</div>
+
+<div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<div id="confirmDialog" class="confirm-dialog hidden">
+  <div class="confirm-box">
+    <h3>Xác nhận ghép phiếu</h3>
+    <p id="confirmDialogText"></p>
+    <div class="confirm-actions">
+      <button type="button" class="secondary" id="confirmCancelBtn">Hủy</button>
+      <button type="button" id="confirmOkBtn">Xác nhận</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Đặt phiếu -->
+<div id="ticketModal" class="modal hidden">
+  <div class="modalBox">
+    <button class="close" id="closeTicketModal" type="button">×</button>
+    <h2>Đặt phiếu mới</h2>
+    <form id="ticketForm">
+      <label>Ngày giờ đến *<input id="ticketDateTime" type="datetime-local" required></label>
+      <label>Giới tính mong muốn (đối phương)
+        <select id="ticketGenderReq">
+          <option value="">Không yêu cầu</option>
+          <option value="Nam">Nam</option>
+          <option value="Nữ">Nữ</option>
+          <option value="Khác">Khác</option>
+        </select>
+      </label>
+      <label>Độ tuổi mong muốn
+        <select id="ticketAgeReq">
+          <option value="">Không yêu cầu</option>
+          <option value="18-25">18-25</option>
+          <option value="26-35">26-35</option>
+          <option value="36-45">36-45</option>
+          <option value="46+">46+</option>
+        </select>
+      </label>
+      <label>Sở thích mong muốn
+        <select id="ticketInterestReq">
+          <option value="">Không yêu cầu</option>
+          <option value="Du lịch">Du lịch</option>
+          <option value="Ẩm thực">Ẩm thực</option>
+          <option value="Âm nhạc">Âm nhạc</option>
+          <option value="Phim">Phim</option>
+          <option value="Thể thao">Thể thao</option>
+          <option value="Đọc sách">Đọc sách</option>
+          <option value="Nấu ăn">Nấu ăn</option>
+          <option value="Café / trò chuyện">Café / trò chuyện</option>
+        </select>
+      </label>
+      <label>Tính cách mong muốn
+        <select id="ticketPersonalityReq">
+          <option value="">Không yêu cầu</option>
+          <option value="Hòa đồng">Hòa đồng</option>
+          <option value="Tĩnh lặng">Tĩnh lặng</option>
+          <option value="Năng động">Năng động</option>
+          <option value="Lịch sự">Lịch sự</option>
+          <option value="Nhiệt tình">Nhiệt tình</option>
+          <option value="Vui vẻ">Vui vẻ</option>
+        </select>
+      </label>
+      <p class="privacy">🔒 Đối phương không thấy tên, số điện thoại, email hay ngày sinh của bạn.</p>
+      <button type="submit">Đặt phiếu</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Chi tiết phiếu -->
+<div id="ticketDetailModal" class="modal hidden">
+  <div class="modalBox">
+    <button class="close" id="closeDetailModal" type="button" onclick="closeTicketDetailModal()">×</button>
+    <h2>Phiếu <span id="detailTicketId"></span></h2>
+    <div class="stack">
+      <p><b>Trạng thái:</b> <span id="detailStatus" class="status-badge"></span></p>
+      <p><b>Ngày giờ đến:</b> <span id="detailDateTime"></span></p>
+      <p><b>Yêu cầu của bạn:</b></p>
+      <div class="privacy" id="detailRequirements"></div>
+      <p><b>Yêu cầu của đối phương:</b></p>
+      <div class="privacy" id="detailPartnerRequirements"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Đặt cọc -->
+<div id="depositModal" class="modal hidden">
+  <div class="modalBox">
+    <button class="close" id="closeDepositModal" type="button">×</button>
+    <h2>Đặt cọc</h2>
+    <div class="stack">
+      <p>Phiếu của bạn đã ghép thành công! Vui lòng thực hiện giao dịch chuyển khoản để xác nhận.</p>
+      <div class="deposit-info">
+        <p><b>Số tiền cọc:</b> 50.000 đ</p>
+        <p><b>Ngân hàng:</b> Vietcombank</p>
+        <p><b>Số tài khoản:</b> 1234567890</p>
+        <p><b>Chủ tài khoản:</b> PARICHA</p>
+        <p><b>Nội dung chuyển khoản:</b> <code id="depositReference"></code></p>
+      </div>
+      <button type="button" id="confirmDepositBtn">Tôi đã chuyển khoản</button>
+      <button type="button" id="cancelDepositBtn" class="secondary">Hủy phiếu</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Hồ sơ -->
+<div id="profileModal" class="modal hidden">
+  <div class="modalBox">
+    <button class="close" id="closeProfileModal" type="button">×</button>
+    <h2>Hồ sơ cá nhân</h2>
+    <form id="profileForm">
+      <label>Tên đầy đủ<input id="profileName" placeholder="Tên của bạn"></label>
+      <label>Giới tính
+        <select id="profileGender">
+          <option value="">-- Chọn --</option>
+          <option value="Nam">Nam</option>
+          <option value="Nữ">Nữ</option>
+          <option value="Khác">Khác</option>
+        </select>
+      </label>
+      <label>Ngày sinh<input id="profileDob" type="date      -- PARICHA - Quán ăn ghép đôi Database
+      
+      -- ==================== USERS ====================
+      CREATE TABLE users (
+        id VARCHAR(10) PRIMARY KEY,
+        phone VARCHAR(20) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        gender NVARCHAR(20),
+        dob DATE,
+        email VARCHAR(100),
+        interests NVARCHAR(500),
+        reputation INT DEFAULT 100,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO users (id, phone, password, name, gender, dob, email, interests, reputation, created_at, updated_at)
+      VALUES 
+        ('U001', '0912345678', '123456', N'Nguyễn Văn A', N'Nam', '1998-05-15', 'nguyenvana@example.com', N'Thích du lịch, âm nhạc, phim', 100, '2024-01-15', '2024-01-15'),
+        ('U002', '0987654321', '123456', N'Trần Thị B', N'Nữ', '2000-08-20', 'tranthib@example.com', N'Yêu thích ẩm thực, yoga, đọc sách', 95, '2024-02-10', '2024-02-10'),
+        ('U003', '0901234567', '123456', N'Lê Minh C', N'Nam', '1999-03-10', 'leminhc@example.com', N'Thích phim, công nghệ, du lịch', 100, '2024-03-05', '2024-03-05'),
+        ('U004', '0934567890', '123456', N'Phạm Hương D', N'Nữ', '2001-07-22', 'phamhuong@example.com', N'Yêu thích nấu ăn, thể thao, âm nhạc', 98, '2024-04-12', '2024-04-12');
+      
+      -- ==================== TICKETS ====================
+      CREATE TABLE tickets (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        date_time DATETIME NOT NULL,
+        gender_req NVARCHAR(20),
+        age_req NVARCHAR(20),
+        interest_req NVARCHAR(500),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Đang chờ',
+        matched_ticket_id VARCHAR(10),
+        matched_user_id VARCHAR(10),
+        partner_gender_req NVARCHAR(20),
+        partner_age_req NVARCHAR(20),
+        partner_interest_req NVARCHAR(500),
+        deposit_status NVARCHAR(50),
+        deposit_ref_code VARCHAR(50),
+        table_assigned INT,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (matched_user_id) REFERENCES users(id),
+        FOREIGN KEY (table_assigned) REFERENCES restaurant_tables(id)
+      );
+      
+      INSERT INTO tickets (id, user_id, date_time, gender_req, age_req, interest_req, status, matched_ticket_id, matched_user_id, partner_gender_req, partner_age_req, partner_interest_req, deposit_status, deposit_ref_code, table_assigned, created_at, updated_at)
+      VALUES 
+        ('T001', 'U001', '2026-10-05 19:00:00', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Ghép thành công', 'T002', 'U002', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', 'Đã cọc', 'PARICHA20261005U001', 5, '2026-09-29 10:00:00', '2026-09-29 15:00:00'),
+        ('T002', 'U002', '2026-10-05 19:00:00', N'Nam', N'18-25', N'Thích âm nhạc, du lịch', N'Ghép thành công', 'T001', 'U001', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Chờ cọc', 'PARICHA20261005U002', 5, '2026-09-29 11:30:00', '2026-09-29 15:00:00'),
+        ('T003', 'U003', '2026-10-06 19:30:00', N'Nữ', N'26-35', N'Thích công nghệ, phim', N'Đang chờ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-29 12:00:00', '2026-09-29 12:00:00');
+      
+      -- ==================== TICKET REQUESTS ====================
+      CREATE TABLE ticket_requests (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket1_user_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10),
+        ticket2_user_id VARCHAR(10),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ duyệt',
+        match_percentage INT,
+        reason_for_match NVARCHAR(500),
+        requested_at DATETIME DEFAULT GETDATE(),
+        reviewed_at DATETIME,
+        reviewed_by VARCHAR(10),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket1_user_id) REFERENCES users(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO ticket_requests (id, ticket1_id, ticket1_user_id, ticket2_id, ticket2_user_id, status, match_percentage, reason_for_match, requested_at, reviewed_at, reviewed_by)
+      VALUES 
+        ('TR001', 'T001', 'U001', 'T002', 'U002', N'Chấp thuận', 85, N'Cùng sở thích du lịch, âm nhạc, độ tuổi phù hợp', '2026-09-29 12:00:00', '2026-09-29 14:00:00', 'ADMIN001'),
+        ('TR002', 'T003', 'U003', NULL, NULL, N'Chờ duyệt', NULL, NULL, '2026-09-29 12:00:00', NULL, NULL);
+      
+      -- ==================== DEPOSITS ====================
+      CREATE TABLE deposits (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket_id VARCHAR(10) NOT NULL,
+        user_id VARCHAR(10) NOT NULL,
+        amount INT DEFAULT 50000,
+        bank_name NVARCHAR(100),
+        account_number VARCHAR(50),
+        account_holder NVARCHAR(100),
+        reference_code VARCHAR(50) NOT NULL UNIQUE,
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ xác nhận',
+        transaction_date DATETIME,
+        confirmed_at DATETIME,
+        notes NVARCHAR(500),
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (ticket_id) REFERENCES tickets(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO deposits (id, ticket_id, user_id, amount, bank_name, account_number, account_holder, reference_code, status, transaction_date, confirmed_at, notes, created_at)
+      VALUES 
+        ('D001', 'T002', 'U002', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U002', N'Chờ xác nhận', '2026-09-29 15:00:00', NULL, NULL, '2026-09-29 15:00:00'),
+        ('D002', 'T001', 'U001', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U001', N'Đã xác nhận', '2026-09-29 14:30:00', '2026-09-29 15:30:00', NULL, '2026-09-29 14:30:00');
+      
+      -- ==================== NOTIFICATIONS ====================
+      CREATE TABLE notifications (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        type NVARCHAR(50) NOT NULL,
+        message NVARCHAR(500) NOT NULL,
+        related_ticket_id VARCHAR(10),
+        is_read BIT DEFAULT 0,
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (related_ticket_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO notifications (id, user_id, type, message, related_ticket_id, is_read, created_at)
+      VALUES 
+        ('N001', 'U001', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T001', 0, '2026-09-29 15:00:00'),
+        ('N002', 'U002', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T002', 0, '2026-09-29 15:00:00'),
+        ('N003', 'U001', 'deposit_confirmed', N'Đặt cọc của bạn đã được xác nhận. Hẹn gặp bạn lúc 19:00!', 'T001', 0, '2026-09-29 15:30:00');
+      
+      -- ==================== RESTAURANT TABLES ====================
+      CREATE TABLE restaurant_tables (
+        id INT PRIMARY KEY,
+        capacity INT DEFAULT 2,
+        status NVARCHAR(50) DEFAULT N'available',
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO restaurant_tables (id, capacity, status, created_at, updated_at)
+      VALUES 
+        (1, 2, N'available', '2024-01-01', '2024-01-01'),
+        (2, 2, N'available', '2024-01-01', '2024-01-01'),
+        (3, 2, N'available', '2024-01-01', '2024-01-01'),
+        (4, 2, N'available', '2024-01-01', '2024-01-01'),
+        (5, 2, N'occupied', '2024-01-01', '2026-09-29 15:00:00'),
+        (6, 2, N'available', '2024-01-01', '2024-01-01'),
+        (7, 2, N'available', '2024-01-01', '2024-01-01'),
+        (8, 2, N'available', '2024-01-01', '2024-01-01'),
+        (9, 2, N'available', '2024-01-01', '2024-01-01'),
+        (10, 2, N'available', '2024-01-01', '2024-01-01');
+      
+      -- ==================== TABLE ASSIGNMENTS ====================
+      CREATE TABLE table_assignments (
+        id INT PRIMARY KEY IDENTITY(1,1),
+        table_id INT NOT NULL,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10) NOT NULL,
+        assigned_date DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (table_id) REFERENCES restaurant_tables(id),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO table_assignments (table_id, ticket1_id, ticket2_id, assigned_date)
+      VALUES 
+        (5, 'T001', 'T002', '2026-09-29 14:00:00');
+      
+      -- ==================== ADMIN ACCOUNTS ====================
+      CREATE TABLE admin_accounts (
+        id VARCHAR(10) PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        role NVARCHAR(50) DEFAULT N'admin',
+        created_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO admin_accounts (id, username, password, name, role, created_at)
+      VALUES 
+        ('ADMIN001', 'admin', 'admin123', N'Quản trị viên', N'admin', '2024-01-01'),
+        ('ADMIN002', 'admin2', 'admin456', N'Trợ lý quản trị', N'admin', '2024-02-01');
+      
+      -- ==================== INDEXES ====================
+      CREATE INDEX idx_users_phone ON users(phone);
+      CREATE INDEX idx_tickets_user_id ON tickets(user_id);
+      CREATE INDEX idx_tickets_status ON tickets(status);
+      CREATE INDEX idx_tickets_date_time ON tickets(date_time);
+      CREATE INDEX idx_ticket_requests_status ON ticket_requests(status);
+      CREATE INDEX idx_deposits_ticket_id ON deposits(ticket_id);
+      CREATE INDEX idx_deposits_status ON deposits(status);
+      CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+      CREATE INDEX idx_notifications_is_read ON notifications(is_read);      -- PARICHA - Quán ăn ghép đôi Database
+      
+      -- ==================== USERS ====================
+      CREATE TABLE users (
+        id VARCHAR(10) PRIMARY KEY,
+        phone VARCHAR(20) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        gender NVARCHAR(20),
+        dob DATE,
+        email VARCHAR(100),
+        interests NVARCHAR(500),
+        reputation INT DEFAULT 100,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO users (id, phone, password, name, gender, dob, email, interests, reputation, created_at, updated_at)
+      VALUES 
+        ('U001', '0912345678', '123456', N'Nguyễn Văn A', N'Nam', '1998-05-15', 'nguyenvana@example.com', N'Thích du lịch, âm nhạc, phim', 100, '2024-01-15', '2024-01-15'),
+        ('U002', '0987654321', '123456', N'Trần Thị B', N'Nữ', '2000-08-20', 'tranthib@example.com', N'Yêu thích ẩm thực, yoga, đọc sách', 95, '2024-02-10', '2024-02-10'),
+        ('U003', '0901234567', '123456', N'Lê Minh C', N'Nam', '1999-03-10', 'leminhc@example.com', N'Thích phim, công nghệ, du lịch', 100, '2024-03-05', '2024-03-05'),
+        ('U004', '0934567890', '123456', N'Phạm Hương D', N'Nữ', '2001-07-22', 'phamhuong@example.com', N'Yêu thích nấu ăn, thể thao, âm nhạc', 98, '2024-04-12', '2024-04-12');
+      
+      -- ==================== TICKETS ====================
+      CREATE TABLE tickets (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        date_time DATETIME NOT NULL,
+        gender_req NVARCHAR(20),
+        age_req NVARCHAR(20),
+        interest_req NVARCHAR(500),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Đang chờ',
+        matched_ticket_id VARCHAR(10),
+        matched_user_id VARCHAR(10),
+        partner_gender_req NVARCHAR(20),
+        partner_age_req NVARCHAR(20),
+        partner_interest_req NVARCHAR(500),
+        deposit_status NVARCHAR(50),
+        deposit_ref_code VARCHAR(50),
+        table_assigned INT,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (matched_user_id) REFERENCES users(id),
+        FOREIGN KEY (table_assigned) REFERENCES restaurant_tables(id)
+      );
+      
+      INSERT INTO tickets (id, user_id, date_time, gender_req, age_req, interest_req, status, matched_ticket_id, matched_user_id, partner_gender_req, partner_age_req, partner_interest_req, deposit_status, deposit_ref_code, table_assigned, created_at, updated_at)
+      VALUES 
+        ('T001', 'U001', '2026-10-05 19:00:00', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Ghép thành công', 'T002', 'U002', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', 'Đã cọc', 'PARICHA20261005U001', 5, '2026-09-29 10:00:00', '2026-09-29 15:00:00'),
+        ('T002', 'U002', '2026-10-05 19:00:00', N'Nam', N'18-25', N'Thích âm nhạc, du lịch', N'Ghép thành công', 'T001', 'U001', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Chờ cọc', 'PARICHA20261005U002', 5, '2026-09-29 11:30:00', '2026-09-29 15:00:00'),
+        ('T003', 'U003', '2026-10-06 19:30:00', N'Nữ', N'26-35', N'Thích công nghệ, phim', N'Đang chờ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-29 12:00:00', '2026-09-29 12:00:00');
+      
+      -- ==================== TICKET REQUESTS ====================
+      CREATE TABLE ticket_requests (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket1_user_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10),
+        ticket2_user_id VARCHAR(10),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ duyệt',
+        match_percentage INT,
+        reason_for_match NVARCHAR(500),
+        requested_at DATETIME DEFAULT GETDATE(),
+        reviewed_at DATETIME,
+        reviewed_by VARCHAR(10),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket1_user_id) REFERENCES users(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO ticket_requests (id, ticket1_id, ticket1_user_id, ticket2_id, ticket2_user_id, status, match_percentage, reason_for_match, requested_at, reviewed_at, reviewed_by)
+      VALUES 
+        ('TR001', 'T001', 'U001', 'T002', 'U002', N'Chấp thuận', 85, N'Cùng sở thích du lịch, âm nhạc, độ tuổi phù hợp', '2026-09-29 12:00:00', '2026-09-29 14:00:00', 'ADMIN001'),
+        ('TR002', 'T003', 'U003', NULL, NULL, N'Chờ duyệt', NULL, NULL, '2026-09-29 12:00:00', NULL, NULL);
+      
+      -- ==================== DEPOSITS ====================
+      CREATE TABLE deposits (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket_id VARCHAR(10) NOT NULL,
+        user_id VARCHAR(10) NOT NULL,
+        amount INT DEFAULT 50000,
+        bank_name NVARCHAR(100),
+        account_number VARCHAR(50),
+        account_holder NVARCHAR(100),
+        reference_code VARCHAR(50) NOT NULL UNIQUE,
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ xác nhận',
+        transaction_date DATETIME,
+        confirmed_at DATETIME,
+        notes NVARCHAR(500),
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (ticket_id) REFERENCES tickets(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO deposits (id, ticket_id, user_id, amount, bank_name, account_number, account_holder, reference_code, status, transaction_date, confirmed_at, notes, created_at)
+      VALUES 
+        ('D001', 'T002', 'U002', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U002', N'Chờ xác nhận', '2026-09-29 15:00:00', NULL, NULL, '2026-09-29 15:00:00'),
+        ('D002', 'T001', 'U001', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U001', N'Đã xác nhận', '2026-09-29 14:30:00', '2026-09-29 15:30:00', NULL, '2026-09-29 14:30:00');
+      
+      -- ==================== NOTIFICATIONS ====================
+      CREATE TABLE notifications (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        type NVARCHAR(50) NOT NULL,
+        message NVARCHAR(500) NOT NULL,
+        related_ticket_id VARCHAR(10),
+        is_read BIT DEFAULT 0,
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (related_ticket_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO notifications (id, user_id, type, message, related_ticket_id, is_read, created_at)
+      VALUES 
+        ('N001', 'U001', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T001', 0, '2026-09-29 15:00:00'),
+        ('N002', 'U002', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T002', 0, '2026-09-29 15:00:00'),
+        ('N003', 'U001', 'deposit_confirmed', N'Đặt cọc của bạn đã được xác nhận. Hẹn gặp bạn lúc 19:00!', 'T001', 0, '2026-09-29 15:30:00');
+      
+      -- ==================== RESTAURANT TABLES ====================
+      CREATE TABLE restaurant_tables (
+        id INT PRIMARY KEY,
+        capacity INT DEFAULT 2,
+        status NVARCHAR(50) DEFAULT N'available',
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO restaurant_tables (id, capacity, status, created_at, updated_at)
+      VALUES 
+        (1, 2, N'available', '2024-01-01', '2024-01-01'),
+        (2, 2, N'available', '2024-01-01', '2024-01-01'),
+        (3, 2, N'available', '2024-01-01', '2024-01-01'),
+        (4, 2, N'available', '2024-01-01', '2024-01-01'),
+        (5, 2, N'occupied', '2024-01-01', '2026-09-29 15:00:00'),
+        (6, 2, N'available', '2024-01-01', '2024-01-01'),
+        (7, 2, N'available', '2024-01-01', '2024-01-01'),
+        (8, 2, N'available', '2024-01-01', '2024-01-01'),
+        (9, 2, N'available', '2024-01-01', '2024-01-01'),
+        (10, 2, N'available', '2024-01-01', '2024-01-01');
+      
+      -- ==================== TABLE ASSIGNMENTS ====================
+      CREATE TABLE table_assignments (
+        id INT PRIMARY KEY IDENTITY(1,1),
+        table_id INT NOT NULL,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10) NOT NULL,
+        assigned_date DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (table_id) REFERENCES restaurant_tables(id),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO table_assignments (table_id, ticket1_id, ticket2_id, assigned_date)
+      VALUES 
+        (5, 'T001', 'T002', '2026-09-29 14:00:00');
+      
+      -- ==================== ADMIN ACCOUNTS ====================
+      CREATE TABLE admin_accounts (
+        id VARCHAR(10) PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        role NVARCHAR(50) DEFAULT N'admin',
+        created_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO admin_accounts (id, username, password, name, role, created_at)
+      VALUES 
+        ('ADMIN001', 'admin', 'admin123', N'Quản trị viên', N'admin', '2024-01-01'),
+        ('ADMIN002', 'admin2', 'admin456', N'Trợ lý quản trị', N'admin', '2024-02-01');
+      
+      -- ==================== INDEXES ====================
+      CREATE INDEX idx_users_phone ON users(phone);
+      CREATE INDEX idx_tickets_user_id ON tickets(user_id);
+      CREATE INDEX idx_tickets_status ON tickets(status);
+      CREATE INDEX idx_tickets_date_time ON tickets(date_time);
+      CREATE INDEX idx_ticket_requests_status ON ticket_requests(status);
+      CREATE INDEX idx_deposits_ticket_id ON deposits(ticket_id);
+      CREATE INDEX idx_deposits_status ON deposits(status);
+      CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+      CREATE INDEX idx_notifications_is_read ON notifications(is_read);      -- PARICHA - Quán ăn ghép đôi Database
+      
+      -- ==================== USERS ====================
+      CREATE TABLE users (
+        id VARCHAR(10) PRIMARY KEY,
+        phone VARCHAR(20) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        gender NVARCHAR(20),
+        dob DATE,
+        email VARCHAR(100),
+        interests NVARCHAR(500),
+        reputation INT DEFAULT 100,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO users (id, phone, password, name, gender, dob, email, interests, reputation, created_at, updated_at)
+      VALUES 
+        ('U001', '0912345678', '123456', N'Nguyễn Văn A', N'Nam', '1998-05-15', 'nguyenvana@example.com', N'Thích du lịch, âm nhạc, phim', 100, '2024-01-15', '2024-01-15'),
+        ('U002', '0987654321', '123456', N'Trần Thị B', N'Nữ', '2000-08-20', 'tranthib@example.com', N'Yêu thích ẩm thực, yoga, đọc sách', 95, '2024-02-10', '2024-02-10'),
+        ('U003', '0901234567', '123456', N'Lê Minh C', N'Nam', '1999-03-10', 'leminhc@example.com', N'Thích phim, công nghệ, du lịch', 100, '2024-03-05', '2024-03-05'),
+        ('U004', '0934567890', '123456', N'Phạm Hương D', N'Nữ', '2001-07-22', 'phamhuong@example.com', N'Yêu thích nấu ăn, thể thao, âm nhạc', 98, '2024-04-12', '2024-04-12');
+      
+      -- ==================== TICKETS ====================
+      CREATE TABLE tickets (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        date_time DATETIME NOT NULL,
+        gender_req NVARCHAR(20),
+        age_req NVARCHAR(20),
+        interest_req NVARCHAR(500),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Đang chờ',
+        matched_ticket_id VARCHAR(10),
+        matched_user_id VARCHAR(10),
+        partner_gender_req NVARCHAR(20),
+        partner_age_req NVARCHAR(20),
+        partner_interest_req NVARCHAR(500),
+        deposit_status NVARCHAR(50),
+        deposit_ref_code VARCHAR(50),
+        table_assigned INT,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (matched_user_id) REFERENCES users(id),
+        FOREIGN KEY (table_assigned) REFERENCES restaurant_tables(id)
+      );
+      
+      INSERT INTO tickets (id, user_id, date_time, gender_req, age_req, interest_req, status, matched_ticket_id, matched_user_id, partner_gender_req, partner_age_req, partner_interest_req, deposit_status, deposit_ref_code, table_assigned, created_at, updated_at)
+      VALUES 
+        ('T001', 'U001', '2026-10-05 19:00:00', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Ghép thành công', 'T002', 'U002', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', 'Đã cọc', 'PARICHA20261005U001', 5, '2026-09-29 10:00:00', '2026-09-29 15:00:00'),
+        ('T002', 'U002', '2026-10-05 19:00:00', N'Nam', N'18-25', N'Thích âm nhạc, du lịch', N'Ghép thành công', 'T001', 'U001', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Chờ cọc', 'PARICHA20261005U002', 5, '2026-09-29 11:30:00', '2026-09-29 15:00:00'),
+        ('T003', 'U003', '2026-10-06 19:30:00', N'Nữ', N'26-35', N'Thích công nghệ, phim', N'Đang chờ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-29 12:00:00', '2026-09-29 12:00:00');
+      
+      -- ==================== TICKET REQUESTS ====================
+      CREATE TABLE ticket_requests (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket1_user_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10),
+        ticket2_user_id VARCHAR(10),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ duyệt',
+        match_percentage INT,
+        reason_for_match NVARCHAR(500),
+        requested_at DATETIME DEFAULT GETDATE(),
+        reviewed_at DATETIME,
+        reviewed_by VARCHAR(10),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket1_user_id) REFERENCES users(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO ticket_requests (id, ticket1_id, ticket1_user_id, ticket2_id, ticket2_user_id, status, match_percentage, reason_for_match, requested_at, reviewed_at, reviewed_by)
+      VALUES 
+        ('TR001', 'T001', 'U001', 'T002', 'U002', N'Chấp thuận', 85, N'Cùng sở thích du lịch, âm nhạc, độ tuổi phù hợp', '2026-09-29 12:00:00', '2026-09-29 14:00:00', 'ADMIN001'),
+        ('TR002', 'T003', 'U003', NULL, NULL, N'Chờ duyệt', NULL, NULL, '2026-09-29 12:00:00', NULL, NULL);
+      
+      -- ==================== DEPOSITS ====================
+      CREATE TABLE deposits (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket_id VARCHAR(10) NOT NULL,
+        user_id VARCHAR(10) NOT NULL,
+        amount INT DEFAULT 50000,
+        bank_name NVARCHAR(100),
+        account_number VARCHAR(50),
+        account_holder NVARCHAR(100),
+        reference_code VARCHAR(50) NOT NULL UNIQUE,
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ xác nhận',
+        transaction_date DATETIME,
+        confirmed_at DATETIME,
+        notes NVARCHAR(500),
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (ticket_id) REFERENCES tickets(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO deposits (id, ticket_id, user_id, amount, bank_name, account_number, account_holder, reference_code, status, transaction_date, confirmed_at, notes, created_at)
+      VALUES 
+        ('D001', 'T002', 'U002', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U002', N'Chờ xác nhận', '2026-09-29 15:00:00', NULL, NULL, '2026-09-29 15:00:00'),
+        ('D002', 'T001', 'U001', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U001', N'Đã xác nhận', '2026-09-29 14:30:00', '2026-09-29 15:30:00', NULL, '2026-09-29 14:30:00');
+      
+      -- ==================== NOTIFICATIONS ====================
+      CREATE TABLE notifications (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        type NVARCHAR(50) NOT NULL,
+        message NVARCHAR(500) NOT NULL,
+        related_ticket_id VARCHAR(10),
+        is_read BIT DEFAULT 0,
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (related_ticket_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO notifications (id, user_id, type, message, related_ticket_id, is_read, created_at)
+      VALUES 
+        ('N001', 'U001', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T001', 0, '2026-09-29 15:00:00'),
+        ('N002', 'U002', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T002', 0, '2026-09-29 15:00:00'),
+        ('N003', 'U001', 'deposit_confirmed', N'Đặt cọc của bạn đã được xác nhận. Hẹn gặp bạn lúc 19:00!', 'T001', 0, '2026-09-29 15:30:00');
+      
+      -- ==================== RESTAURANT TABLES ====================
+      CREATE TABLE restaurant_tables (
+        id INT PRIMARY KEY,
+        capacity INT DEFAULT 2,
+        status NVARCHAR(50) DEFAULT N'available',
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO restaurant_tables (id, capacity, status, created_at, updated_at)
+      VALUES 
+        (1, 2, N'available', '2024-01-01', '2024-01-01'),
+        (2, 2, N'available', '2024-01-01', '2024-01-01'),
+        (3, 2, N'available', '2024-01-01', '2024-01-01'),
+        (4, 2, N'available', '2024-01-01', '2024-01-01'),
+        (5, 2, N'occupied', '2024-01-01', '2026-09-29 15:00:00'),
+        (6, 2, N'available', '2024-01-01', '2024-01-01'),
+        (7, 2, N'available', '2024-01-01', '2024-01-01'),
+        (8, 2, N'available', '2024-01-01', '2024-01-01'),
+        (9, 2, N'available', '2024-01-01', '2024-01-01'),
+        (10, 2, N'available', '2024-01-01', '2024-01-01');
+      
+      -- ==================== TABLE ASSIGNMENTS ====================
+      CREATE TABLE table_assignments (
+        id INT PRIMARY KEY IDENTITY(1,1),
+        table_id INT NOT NULL,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10) NOT NULL,
+        assigned_date DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (table_id) REFERENCES restaurant_tables(id),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO table_assignments (table_id, ticket1_id, ticket2_id, assigned_date)
+      VALUES 
+        (5, 'T001', 'T002', '2026-09-29 14:00:00');
+      
+      -- ==================== ADMIN ACCOUNTS ====================
+      CREATE TABLE admin_accounts (
+        id VARCHAR(10) PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        role NVARCHAR(50) DEFAULT N'admin',
+        created_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO admin_accounts (id, username, password, name, role, created_at)
+      VALUES 
+        ('ADMIN001', 'admin', 'admin123', N'Quản trị viên', N'admin', '2024-01-01'),
+        ('ADMIN002', 'admin2', 'admin456', N'Trợ lý quản trị', N'admin', '2024-02-01');
+      
+      -- ==================== INDEXES ====================
+      CREATE INDEX idx_users_phone ON users(phone);
+      CREATE INDEX idx_tickets_user_id ON tickets(user_id);
+      CREATE INDEX idx_tickets_status ON tickets(status);
+      CREATE INDEX idx_tickets_date_time ON tickets(date_time);
+      CREATE INDEX idx_ticket_requests_status ON ticket_requests(status);
+      CREATE INDEX idx_deposits_ticket_id ON deposits(ticket_id);
+      CREATE INDEX idx_deposits_status ON deposits(status);
+      CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+      CREATE INDEX idx_notifications_is_read ON notifications(is_read);      -- PARICHA - Quán ăn ghép đôi Database
+      
+      -- ==================== USERS ====================
+      CREATE TABLE users (
+        id VARCHAR(10) PRIMARY KEY,
+        phone VARCHAR(20) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        gender NVARCHAR(20),
+        dob DATE,
+        email VARCHAR(100),
+        interests NVARCHAR(500),
+        reputation INT DEFAULT 100,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO users (id, phone, password, name, gender, dob, email, interests, reputation, created_at, updated_at)
+      VALUES 
+        ('U001', '0912345678', '123456', N'Nguyễn Văn A', N'Nam', '1998-05-15', 'nguyenvana@example.com', N'Thích du lịch, âm nhạc, phim', 100, '2024-01-15', '2024-01-15'),
+        ('U002', '0987654321', '123456', N'Trần Thị B', N'Nữ', '2000-08-20', 'tranthib@example.com', N'Yêu thích ẩm thực, yoga, đọc sách', 95, '2024-02-10', '2024-02-10'),
+        ('U003', '0901234567', '123456', N'Lê Minh C', N'Nam', '1999-03-10', 'leminhc@example.com', N'Thích phim, công nghệ, du lịch', 100, '2024-03-05', '2024-03-05'),
+        ('U004', '0934567890', '123456', N'Phạm Hương D', N'Nữ', '2001-07-22', 'phamhuong@example.com', N'Yêu thích nấu ăn, thể thao, âm nhạc', 98, '2024-04-12', '2024-04-12');
+      
+      -- ==================== TICKETS ====================
+      CREATE TABLE tickets (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        date_time DATETIME NOT NULL,
+        gender_req NVARCHAR(20),
+        age_req NVARCHAR(20),
+        interest_req NVARCHAR(500),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Đang chờ',
+        matched_ticket_id VARCHAR(10),
+        matched_user_id VARCHAR(10),
+        partner_gender_req NVARCHAR(20),
+        partner_age_req NVARCHAR(20),
+        partner_interest_req NVARCHAR(500),
+        deposit_status NVARCHAR(50),
+        deposit_ref_code VARCHAR(50),
+        table_assigned INT,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (matched_user_id) REFERENCES users(id),
+        FOREIGN KEY (table_assigned) REFERENCES restaurant_tables(id)
+      );
+      
+      INSERT INTO tickets (id, user_id, date_time, gender_req, age_req, interest_req, status, matched_ticket_id, matched_user_id, partner_gender_req, partner_age_req, partner_interest_req, deposit_status, deposit_ref_code, table_assigned, created_at, updated_at)
+      VALUES 
+        ('T001', 'U001', '2026-10-05 19:00:00', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Ghép thành công', 'T002', 'U002', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', 'Đã cọc', 'PARICHA20261005U001', 5, '2026-09-29 10:00:00', '2026-09-29 15:00:00'),
+        ('T002', 'U002', '2026-10-05 19:00:00', N'Nam', N'18-25', N'Thích âm nhạc, du lịch', N'Ghép thành công', 'T001', 'U001', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Chờ cọc', 'PARICHA20261005U002', 5, '2026-09-29 11:30:00', '2026-09-29 15:00:00'),
+        ('T003', 'U003', '2026-10-06 19:30:00', N'Nữ', N'26-35', N'Thích công nghệ, phim', N'Đang chờ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-29 12:00:00', '2026-09-29 12:00:00');
+      
+      -- ==================== TICKET REQUESTS ====================
+      CREATE TABLE ticket_requests (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket1_user_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10),
+        ticket2_user_id VARCHAR(10),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ duyệt',
+        match_percentage INT,
+        reason_for_match NVARCHAR(500),
+        requested_at DATETIME DEFAULT GETDATE(),
+        reviewed_at DATETIME,
+        reviewed_by VARCHAR(10),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket1_user_id) REFERENCES users(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO ticket_requests (id, ticket1_id, ticket1_user_id, ticket2_id, ticket2_user_id, status, match_percentage, reason_for_match, requested_at, reviewed_at, reviewed_by)
+      VALUES 
+        ('TR001', 'T001', 'U001', 'T002', 'U002', N'Chấp thuận', 85, N'Cùng sở thích du lịch, âm nhạc, độ tuổi phù hợp', '2026-09-29 12:00:00', '2026-09-29 14:00:00', 'ADMIN001'),
+        ('TR002', 'T003', 'U003', NULL, NULL, N'Chờ duyệt', NULL, NULL, '2026-09-29 12:00:00', NULL, NULL);
+      
+      -- ==================== DEPOSITS ====================
+      CREATE TABLE deposits (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket_id VARCHAR(10) NOT NULL,
+        user_id VARCHAR(10) NOT NULL,
+        amount INT DEFAULT 50000,
+        bank_name NVARCHAR(100),
+        account_number VARCHAR(50),
+        account_holder NVARCHAR(100),
+        reference_code VARCHAR(50) NOT NULL UNIQUE,
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ xác nhận',
+        transaction_date DATETIME,
+        confirmed_at DATETIME,
+        notes NVARCHAR(500),
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (ticket_id) REFERENCES tickets(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO deposits (id, ticket_id, user_id, amount, bank_name, account_number, account_holder, reference_code, status, transaction_date, confirmed_at, notes, created_at)
+      VALUES 
+        ('D001', 'T002', 'U002', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U002', N'Chờ xác nhận', '2026-09-29 15:00:00', NULL, NULL, '2026-09-29 15:00:00'),
+        ('D002', 'T001', 'U001', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U001', N'Đã xác nhận', '2026-09-29 14:30:00', '2026-09-29 15:30:00', NULL, '2026-09-29 14:30:00');
+      
+      -- ==================== NOTIFICATIONS ====================
+      CREATE TABLE notifications (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        type NVARCHAR(50) NOT NULL,
+        message NVARCHAR(500) NOT NULL,
+        related_ticket_id VARCHAR(10),
+        is_read BIT DEFAULT 0,
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (related_ticket_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO notifications (id, user_id, type, message, related_ticket_id, is_read, created_at)
+      VALUES 
+        ('N001', 'U001', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T001', 0, '2026-09-29 15:00:00'),
+        ('N002', 'U002', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T002', 0, '2026-09-29 15:00:00'),
+        ('N003', 'U001', 'deposit_confirmed', N'Đặt cọc của bạn đã được xác nhận. Hẹn gặp bạn lúc 19:00!', 'T001', 0, '2026-09-29 15:30:00');
+      
+      -- ==================== RESTAURANT TABLES ====================
+      CREATE TABLE restaurant_tables (
+        id INT PRIMARY KEY,
+        capacity INT DEFAULT 2,
+        status NVARCHAR(50) DEFAULT N'available',
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO restaurant_tables (id, capacity, status, created_at, updated_at)
+      VALUES 
+        (1, 2, N'available', '2024-01-01', '2024-01-01'),
+        (2, 2, N'available', '2024-01-01', '2024-01-01'),
+        (3, 2, N'available', '2024-01-01', '2024-01-01'),
+        (4, 2, N'available', '2024-01-01', '2024-01-01'),
+        (5, 2, N'occupied', '2024-01-01', '2026-09-29 15:00:00'),
+        (6, 2, N'available', '2024-01-01', '2024-01-01'),
+        (7, 2, N'available', '2024-01-01', '2024-01-01'),
+        (8, 2, N'available', '2024-01-01', '2024-01-01'),
+        (9, 2, N'available', '2024-01-01', '2024-01-01'),
+        (10, 2, N'available', '2024-01-01', '2024-01-01');
+      
+      -- ==================== TABLE ASSIGNMENTS ====================
+      CREATE TABLE table_assignments (
+        id INT PRIMARY KEY IDENTITY(1,1),
+        table_id INT NOT NULL,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10) NOT NULL,
+        assigned_date DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (table_id) REFERENCES restaurant_tables(id),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO table_assignments (table_id, ticket1_id, ticket2_id, assigned_date)
+      VALUES 
+        (5, 'T001', 'T002', '2026-09-29 14:00:00');
+      
+      -- ==================== ADMIN ACCOUNTS ====================
+      CREATE TABLE admin_accounts (
+        id VARCHAR(10) PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        role NVARCHAR(50) DEFAULT N'admin',
+        created_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO admin_accounts (id, username, password, name, role, created_at)
+      VALUES 
+        ('ADMIN001', 'admin', 'admin123', N'Quản trị viên', N'admin', '2024-01-01'),
+        ('ADMIN002', 'admin2', 'admin456', N'Trợ lý quản trị', N'admin', '2024-02-01');
+      
+      -- ==================== INDEXES ====================
+      CREATE INDEX idx_users_phone ON users(phone);
+      CREATE INDEX idx_tickets_user_id ON tickets(user_id);
+      CREATE INDEX idx_tickets_status ON tickets(status);
+      CREATE INDEX idx_tickets_date_time ON tickets(date_time);
+      CREATE INDEX idx_ticket_requests_status ON ticket_requests(status);
+      CREATE INDEX idx_deposits_ticket_id ON deposits(ticket_id);
+      CREATE INDEX idx_deposits_status ON deposits(status);
+      CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+      CREATE INDEX idx_notifications_is_read ON notifications(is_read);      -- PARICHA - Quán ăn ghép đôi Database
+      
+      -- ==================== USERS ====================
+      CREATE TABLE users (
+        id VARCHAR(10) PRIMARY KEY,
+        phone VARCHAR(20) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        gender NVARCHAR(20),
+        dob DATE,
+        email VARCHAR(100),
+        interests NVARCHAR(500),
+        reputation INT DEFAULT 100,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO users (id, phone, password, name, gender, dob, email, interests, reputation, created_at, updated_at)
+      VALUES 
+        ('U001', '0912345678', '123456', N'Nguyễn Văn A', N'Nam', '1998-05-15', 'nguyenvana@example.com', N'Thích du lịch, âm nhạc, phim', 100, '2024-01-15', '2024-01-15'),
+        ('U002', '0987654321', '123456', N'Trần Thị B', N'Nữ', '2000-08-20', 'tranthib@example.com', N'Yêu thích ẩm thực, yoga, đọc sách', 95, '2024-02-10', '2024-02-10'),
+        ('U003', '0901234567', '123456', N'Lê Minh C', N'Nam', '1999-03-10', 'leminhc@example.com', N'Thích phim, công nghệ, du lịch', 100, '2024-03-05', '2024-03-05'),
+        ('U004', '0934567890', '123456', N'Phạm Hương D', N'Nữ', '2001-07-22', 'phamhuong@example.com', N'Yêu thích nấu ăn, thể thao, âm nhạc', 98, '2024-04-12', '2024-04-12');
+      
+      -- ==================== TICKETS ====================
+      CREATE TABLE tickets (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        date_time DATETIME NOT NULL,
+        gender_req NVARCHAR(20),
+        age_req NVARCHAR(20),
+        interest_req NVARCHAR(500),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Đang chờ',
+        matched_ticket_id VARCHAR(10),
+        matched_user_id VARCHAR(10),
+        partner_gender_req NVARCHAR(20),
+        partner_age_req NVARCHAR(20),
+        partner_interest_req NVARCHAR(500),
+        deposit_status NVARCHAR(50),
+        deposit_ref_code VARCHAR(50),
+        table_assigned INT,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (matched_user_id) REFERENCES users(id),
+        FOREIGN KEY (table_assigned) REFERENCES restaurant_tables(id)
+      );
+      
+      INSERT INTO tickets (id, user_id, date_time, gender_req, age_req, interest_req, status, matched_ticket_id, matched_user_id, partner_gender_req, partner_age_req, partner_interest_req, deposit_status, deposit_ref_code, table_assigned, created_at, updated_at)
+      VALUES 
+        ('T001', 'U001', '2026-10-05 19:00:00', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Ghép thành công', 'T002', 'U002', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', 'Đã cọc', 'PARICHA20261005U001', 5, '2026-09-29 10:00:00', '2026-09-29 15:00:00'),
+        ('T002', 'U002', '2026-10-05 19:00:00', N'Nam', N'18-25', N'Thích âm nhạc, du lịch', N'Ghép thành công', 'T001', 'U001', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Chờ cọc', 'PARICHA20261005U002', 5, '2026-09-29 11:30:00', '2026-09-29 15:00:00'),
+        ('T003', 'U003', '2026-10-06 19:30:00', N'Nữ', N'26-35', N'Thích công nghệ, phim', N'Đang chờ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-29 12:00:00', '2026-09-29 12:00:00');
+      
+      -- ==================== TICKET REQUESTS ====================
+      CREATE TABLE ticket_requests (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket1_user_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10),
+        ticket2_user_id VARCHAR(10),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ duyệt',
+        match_percentage INT,
+        reason_for_match NVARCHAR(500),
+        requested_at DATETIME DEFAULT GETDATE(),
+        reviewed_at DATETIME,
+        reviewed_by VARCHAR(10),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket1_user_id) REFERENCES users(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO ticket_requests (id, ticket1_id, ticket1_user_id, ticket2_id, ticket2_user_id, status, match_percentage, reason_for_match, requested_at, reviewed_at, reviewed_by)
+      VALUES 
+        ('TR001', 'T001', 'U001', 'T002', 'U002', N'Chấp thuận', 85, N'Cùng sở thích du lịch, âm nhạc, độ tuổi phù hợp', '2026-09-29 12:00:00', '2026-09-29 14:00:00', 'ADMIN001'),
+        ('TR002', 'T003', 'U003', NULL, NULL, N'Chờ duyệt', NULL, NULL, '2026-09-29 12:00:00', NULL, NULL);
+      
+      -- ==================== DEPOSITS ====================
+      CREATE TABLE deposits (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket_id VARCHAR(10) NOT NULL,
+        user_id VARCHAR(10) NOT NULL,
+        amount INT DEFAULT 50000,
+        bank_name NVARCHAR(100),
+        account_number VARCHAR(50),
+        account_holder NVARCHAR(100),
+        reference_code VARCHAR(50) NOT NULL UNIQUE,
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ xác nhận',
+        transaction_date DATETIME,
+        confirmed_at DATETIME,
+        notes NVARCHAR(500),
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (ticket_id) REFERENCES tickets(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO deposits (id, ticket_id, user_id, amount, bank_name, account_number, account_holder, reference_code, status, transaction_date, confirmed_at, notes, created_at)
+      VALUES 
+        ('D001', 'T002', 'U002', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U002', N'Chờ xác nhận', '2026-09-29 15:00:00', NULL, NULL, '2026-09-29 15:00:00'),
+        ('D002', 'T001', 'U001', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U001', N'Đã xác nhận', '2026-09-29 14:30:00', '2026-09-29 15:30:00', NULL, '2026-09-29 14:30:00');
+      
+      -- ==================== NOTIFICATIONS ====================
+      CREATE TABLE notifications (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        type NVARCHAR(50) NOT NULL,
+        message NVARCHAR(500) NOT NULL,
+        related_ticket_id VARCHAR(10),
+        is_read BIT DEFAULT 0,
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (related_ticket_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO notifications (id, user_id, type, message, related_ticket_id, is_read, created_at)
+      VALUES 
+        ('N001', 'U001', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T001', 0, '2026-09-29 15:00:00'),
+        ('N002', 'U002', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T002', 0, '2026-09-29 15:00:00'),
+        ('N003', 'U001', 'deposit_confirmed', N'Đặt cọc của bạn đã được xác nhận. Hẹn gặp bạn lúc 19:00!', 'T001', 0, '2026-09-29 15:30:00');
+      
+      -- ==================== RESTAURANT TABLES ====================
+      CREATE TABLE restaurant_tables (
+        id INT PRIMARY KEY,
+        capacity INT DEFAULT 2,
+        status NVARCHAR(50) DEFAULT N'available',
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO restaurant_tables (id, capacity, status, created_at, updated_at)
+      VALUES 
+        (1, 2, N'available', '2024-01-01', '2024-01-01'),
+        (2, 2, N'available', '2024-01-01', '2024-01-01'),
+        (3, 2, N'available', '2024-01-01', '2024-01-01'),
+        (4, 2, N'available', '2024-01-01', '2024-01-01'),
+        (5, 2, N'occupied', '2024-01-01', '2026-09-29 15:00:00'),
+        (6, 2, N'available', '2024-01-01', '2024-01-01'),
+        (7, 2, N'available', '2024-01-01', '2024-01-01'),
+        (8, 2, N'available', '2024-01-01', '2024-01-01'),
+        (9, 2, N'available', '2024-01-01', '2024-01-01'),
+        (10, 2, N'available', '2024-01-01', '2024-01-01');
+      
+      -- ==================== TABLE ASSIGNMENTS ====================
+      CREATE TABLE table_assignments (
+        id INT PRIMARY KEY IDENTITY(1,1),
+        table_id INT NOT NULL,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10) NOT NULL,
+        assigned_date DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (table_id) REFERENCES restaurant_tables(id),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO table_assignments (table_id, ticket1_id, ticket2_id, assigned_date)
+      VALUES 
+        (5, 'T001', 'T002', '2026-09-29 14:00:00');
+      
+      -- ==================== ADMIN ACCOUNTS ====================
+      CREATE TABLE admin_accounts (
+        id VARCHAR(10) PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        role NVARCHAR(50) DEFAULT N'admin',
+        created_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO admin_accounts (id, username, password, name, role, created_at)
+      VALUES 
+        ('ADMIN001', 'admin', 'admin123', N'Quản trị viên', N'admin', '2024-01-01'),
+        ('ADMIN002', 'admin2', 'admin456', N'Trợ lý quản trị', N'admin', '2024-02-01');
+      
+      -- ==================== INDEXES ====================
+      CREATE INDEX idx_users_phone ON users(phone);
+      CREATE INDEX idx_tickets_user_id ON tickets(user_id);
+      CREATE INDEX idx_tickets_status ON tickets(status);
+      CREATE INDEX idx_tickets_date_time ON tickets(date_time);
+      CREATE INDEX idx_ticket_requests_status ON ticket_requests(status);
+      CREATE INDEX idx_deposits_ticket_id ON deposits(ticket_id);
+      CREATE INDEX idx_deposits_status ON deposits(status);
+      CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+      CREATE INDEX idx_notifications_is_read ON notifications(is_read);      -- PARICHA - Quán ăn ghép đôi Database
+      
+      -- ==================== USERS ====================
+      CREATE TABLE users (
+        id VARCHAR(10) PRIMARY KEY,
+        phone VARCHAR(20) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        gender NVARCHAR(20),
+        dob DATE,
+        email VARCHAR(100),
+        interests NVARCHAR(500),
+        reputation INT DEFAULT 100,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO users (id, phone, password, name, gender, dob, email, interests, reputation, created_at, updated_at)
+      VALUES 
+        ('U001', '0912345678', '123456', N'Nguyễn Văn A', N'Nam', '1998-05-15', 'nguyenvana@example.com', N'Thích du lịch, âm nhạc, phim', 100, '2024-01-15', '2024-01-15'),
+        ('U002', '0987654321', '123456', N'Trần Thị B', N'Nữ', '2000-08-20', 'tranthib@example.com', N'Yêu thích ẩm thực, yoga, đọc sách', 95, '2024-02-10', '2024-02-10'),
+        ('U003', '0901234567', '123456', N'Lê Minh C', N'Nam', '1999-03-10', 'leminhc@example.com', N'Thích phim, công nghệ, du lịch', 100, '2024-03-05', '2024-03-05'),
+        ('U004', '0934567890', '123456', N'Phạm Hương D', N'Nữ', '2001-07-22', 'phamhuong@example.com', N'Yêu thích nấu ăn, thể thao, âm nhạc', 98, '2024-04-12', '2024-04-12');
+      
+      -- ==================== TICKETS ====================
+      CREATE TABLE tickets (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        date_time DATETIME NOT NULL,
+        gender_req NVARCHAR(20),
+        age_req NVARCHAR(20),
+        interest_req NVARCHAR(500),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Đang chờ',
+        matched_ticket_id VARCHAR(10),
+        matched_user_id VARCHAR(10),
+        partner_gender_req NVARCHAR(20),
+        partner_age_req NVARCHAR(20),
+        partner_interest_req NVARCHAR(500),
+        deposit_status NVARCHAR(50),
+        deposit_ref_code VARCHAR(50),
+        table_assigned INT,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (matched_user_id) REFERENCES users(id),
+        FOREIGN KEY (table_assigned) REFERENCES restaurant_tables(id)
+      );
+      
+      INSERT INTO tickets (id, user_id, date_time, gender_req, age_req, interest_req, status, matched_ticket_id, matched_user_id, partner_gender_req, partner_age_req, partner_interest_req, deposit_status, deposit_ref_code, table_assigned, created_at, updated_at)
+      VALUES 
+        ('T001', 'U001', '2026-10-05 19:00:00', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Ghép thành công', 'T002', 'U002', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', 'Đã cọc', 'PARICHA20261005U001', 5, '2026-09-29 10:00:00', '2026-09-29 15:00:00'),
+        ('T002', 'U002', '2026-10-05 19:00:00', N'Nam', N'18-25', N'Thích âm nhạc, du lịch', N'Ghép thành công', 'T001', 'U001', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Chờ cọc', 'PARICHA20261005U002', 5, '2026-09-29 11:30:00', '2026-09-29 15:00:00'),
+        ('T003', 'U003', '2026-10-06 19:30:00', N'Nữ', N'26-35', N'Thích công nghệ, phim', N'Đang chờ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-29 12:00:00', '2026-09-29 12:00:00');
+      
+      -- ==================== TICKET REQUESTS ====================
+      CREATE TABLE ticket_requests (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket1_user_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10),
+        ticket2_user_id VARCHAR(10),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ duyệt',
+        match_percentage INT,
+        reason_for_match NVARCHAR(500),
+        requested_at DATETIME DEFAULT GETDATE(),
+        reviewed_at DATETIME,
+        reviewed_by VARCHAR(10),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket1_user_id) REFERENCES users(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO ticket_requests (id, ticket1_id, ticket1_user_id, ticket2_id, ticket2_user_id, status, match_percentage, reason_for_match, requested_at, reviewed_at, reviewed_by)
+      VALUES 
+        ('TR001', 'T001', 'U001', 'T002', 'U002', N'Chấp thuận', 85, N'Cùng sở thích du lịch, âm nhạc, độ tuổi phù hợp', '2026-09-29 12:00:00', '2026-09-29 14:00:00', 'ADMIN001'),
+        ('TR002', 'T003', 'U003', NULL, NULL, N'Chờ duyệt', NULL, NULL, '2026-09-29 12:00:00', NULL, NULL);
+      
+      -- ==================== DEPOSITS ====================
+      CREATE TABLE deposits (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket_id VARCHAR(10) NOT NULL,
+        user_id VARCHAR(10) NOT NULL,
+        amount INT DEFAULT 50000,
+        bank_name NVARCHAR(100),
+        account_number VARCHAR(50),
+        account_holder NVARCHAR(100),
+        reference_code VARCHAR(50) NOT NULL UNIQUE,
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ xác nhận',
+        transaction_date DATETIME,
+        confirmed_at DATETIME,
+        notes NVARCHAR(500),
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (ticket_id) REFERENCES tickets(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO deposits (id, ticket_id, user_id, amount, bank_name, account_number, account_holder, reference_code, status, transaction_date, confirmed_at, notes, created_at)
+      VALUES 
+        ('D001', 'T002', 'U002', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U002', N'Chờ xác nhận', '2026-09-29 15:00:00', NULL, NULL, '2026-09-29 15:00:00'),
+        ('D002', 'T001', 'U001', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U001', N'Đã xác nhận', '2026-09-29 14:30:00', '2026-09-29 15:30:00', NULL, '2026-09-29 14:30:00');
+      
+      -- ==================== NOTIFICATIONS ====================
+      CREATE TABLE notifications (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        type NVARCHAR(50) NOT NULL,
+        message NVARCHAR(500) NOT NULL,
+        related_ticket_id VARCHAR(10),
+        is_read BIT DEFAULT 0,
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (related_ticket_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO notifications (id, user_id, type, message, related_ticket_id, is_read, created_at)
+      VALUES 
+        ('N001', 'U001', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T001', 0, '2026-09-29 15:00:00'),
+        ('N002', 'U002', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T002', 0, '2026-09-29 15:00:00'),
+        ('N003', 'U001', 'deposit_confirmed', N'Đặt cọc của bạn đã được xác nhận. Hẹn gặp bạn lúc 19:00!', 'T001', 0, '2026-09-29 15:30:00');
+      
+      -- ==================== RESTAURANT TABLES ====================
+      CREATE TABLE restaurant_tables (
+        id INT PRIMARY KEY,
+        capacity INT DEFAULT 2,
+        status NVARCHAR(50) DEFAULT N'available',
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO restaurant_tables (id, capacity, status, created_at, updated_at)
+      VALUES 
+        (1, 2, N'available', '2024-01-01', '2024-01-01'),
+        (2, 2, N'available', '2024-01-01', '2024-01-01'),
+        (3, 2, N'available', '2024-01-01', '2024-01-01'),
+        (4, 2, N'available', '2024-01-01', '2024-01-01'),
+        (5, 2, N'occupied', '2024-01-01', '2026-09-29 15:00:00'),
+        (6, 2, N'available', '2024-01-01', '2024-01-01'),
+        (7, 2, N'available', '2024-01-01', '2024-01-01'),
+        (8, 2, N'available', '2024-01-01', '2024-01-01'),
+        (9, 2, N'available', '2024-01-01', '2024-01-01'),
+        (10, 2, N'available', '2024-01-01', '2024-01-01');
+      
+      -- ==================== TABLE ASSIGNMENTS ====================
+      CREATE TABLE table_assignments (
+        id INT PRIMARY KEY IDENTITY(1,1),
+        table_id INT NOT NULL,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10) NOT NULL,
+        assigned_date DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (table_id) REFERENCES restaurant_tables(id),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO table_assignments (table_id, ticket1_id, ticket2_id, assigned_date)
+      VALUES 
+        (5, 'T001', 'T002', '2026-09-29 14:00:00');
+      
+      -- ==================== ADMIN ACCOUNTS ====================
+      CREATE TABLE admin_accounts (
+        id VARCHAR(10) PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        role NVARCHAR(50) DEFAULT N'admin',
+        created_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO admin_accounts (id, username, password, name, role, created_at)
+      VALUES 
+        ('ADMIN001', 'admin', 'admin123', N'Quản trị viên', N'admin', '2024-01-01'),
+        ('ADMIN002', 'admin2', 'admin456', N'Trợ lý quản trị', N'admin', '2024-02-01');
+      
+      -- ==================== INDEXES ====================
+      CREATE INDEX idx_users_phone ON users(phone);
+      CREATE INDEX idx_tickets_user_id ON tickets(user_id);
+      CREATE INDEX idx_tickets_status ON tickets(status);
+      CREATE INDEX idx_tickets_date_time ON tickets(date_time);
+      CREATE INDEX idx_ticket_requests_status ON ticket_requests(status);
+      CREATE INDEX idx_deposits_ticket_id ON deposits(ticket_id);
+      CREATE INDEX idx_deposits_status ON deposits(status);
+      CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+      CREATE INDEX idx_notifications_is_read ON notifications(is_read);      -- PARICHA - Quán ăn ghép đôi Database
+      
+      -- ==================== USERS ====================
+      CREATE TABLE users (
+        id VARCHAR(10) PRIMARY KEY,
+        phone VARCHAR(20) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        gender NVARCHAR(20),
+        dob DATE,
+        email VARCHAR(100),
+        interests NVARCHAR(500),
+        reputation INT DEFAULT 100,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO users (id, phone, password, name, gender, dob, email, interests, reputation, created_at, updated_at)
+      VALUES 
+        ('U001', '0912345678', '123456', N'Nguyễn Văn A', N'Nam', '1998-05-15', 'nguyenvana@example.com', N'Thích du lịch, âm nhạc, phim', 100, '2024-01-15', '2024-01-15'),
+        ('U002', '0987654321', '123456', N'Trần Thị B', N'Nữ', '2000-08-20', 'tranthib@example.com', N'Yêu thích ẩm thực, yoga, đọc sách', 95, '2024-02-10', '2024-02-10'),
+        ('U003', '0901234567', '123456', N'Lê Minh C', N'Nam', '1999-03-10', 'leminhc@example.com', N'Thích phim, công nghệ, du lịch', 100, '2024-03-05', '2024-03-05'),
+        ('U004', '0934567890', '123456', N'Phạm Hương D', N'Nữ', '2001-07-22', 'phamhuong@example.com', N'Yêu thích nấu ăn, thể thao, âm nhạc', 98, '2024-04-12', '2024-04-12');
+      
+      -- ==================== TICKETS ====================
+      CREATE TABLE tickets (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        date_time DATETIME NOT NULL,
+        gender_req NVARCHAR(20),
+        age_req NVARCHAR(20),
+        interest_req NVARCHAR(500),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Đang chờ',
+        matched_ticket_id VARCHAR(10),
+        matched_user_id VARCHAR(10),
+        partner_gender_req NVARCHAR(20),
+        partner_age_req NVARCHAR(20),
+        partner_interest_req NVARCHAR(500),
+        deposit_status NVARCHAR(50),
+        deposit_ref_code VARCHAR(50),
+        table_assigned INT,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (matched_user_id) REFERENCES users(id),
+        FOREIGN KEY (table_assigned) REFERENCES restaurant_tables(id)
+      );
+      
+      INSERT INTO tickets (id, user_id, date_time, gender_req, age_req, interest_req, status, matched_ticket_id, matched_user_id, partner_gender_req, partner_age_req, partner_interest_req, deposit_status, deposit_ref_code, table_assigned, created_at, updated_at)
+      VALUES 
+        ('T001', 'U001', '2026-10-05 19:00:00', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Ghép thành công', 'T002', 'U002', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', 'Đã cọc', 'PARICHA20261005U001', 5, '2026-09-29 10:00:00', '2026-09-29 15:00:00'),
+        ('T002', 'U002', '2026-10-05 19:00:00', N'Nam', N'18-25', N'Thích âm nhạc, du lịch', N'Ghép thành công', 'T001', 'U001', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Chờ cọc', 'PARICHA20261005U002', 5, '2026-09-29 11:30:00', '2026-09-29 15:00:00'),
+        ('T003', 'U003', '2026-10-06 19:30:00', N'Nữ', N'26-35', N'Thích công nghệ, phim', N'Đang chờ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-29 12:00:00', '2026-09-29 12:00:00');
+      
+      -- ==================== TICKET REQUESTS ====================
+      CREATE TABLE ticket_requests (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket1_user_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10),
+        ticket2_user_id VARCHAR(10),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ duyệt',
+        match_percentage INT,
+        reason_for_match NVARCHAR(500),
+        requested_at DATETIME DEFAULT GETDATE(),
+        reviewed_at DATETIME,
+        reviewed_by VARCHAR(10),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket1_user_id) REFERENCES users(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO ticket_requests (id, ticket1_id, ticket1_user_id, ticket2_id, ticket2_user_id, status, match_percentage, reason_for_match, requested_at, reviewed_at, reviewed_by)
+      VALUES 
+        ('TR001', 'T001', 'U001', 'T002', 'U002', N'Chấp thuận', 85, N'Cùng sở thích du lịch, âm nhạc, độ tuổi phù hợp', '2026-09-29 12:00:00', '2026-09-29 14:00:00', 'ADMIN001'),
+        ('TR002', 'T003', 'U003', NULL, NULL, N'Chờ duyệt', NULL, NULL, '2026-09-29 12:00:00', NULL, NULL);
+      
+      -- ==================== DEPOSITS ====================
+      CREATE TABLE deposits (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket_id VARCHAR(10) NOT NULL,
+        user_id VARCHAR(10) NOT NULL,
+        amount INT DEFAULT 50000,
+        bank_name NVARCHAR(100),
+        account_number VARCHAR(50),
+        account_holder NVARCHAR(100),
+        reference_code VARCHAR(50) NOT NULL UNIQUE,
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ xác nhận',
+        transaction_date DATETIME,
+        confirmed_at DATETIME,
+        notes NVARCHAR(500),
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (ticket_id) REFERENCES tickets(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO deposits (id, ticket_id, user_id, amount, bank_name, account_number, account_holder, reference_code, status, transaction_date, confirmed_at, notes, created_at)
+      VALUES 
+        ('D001', 'T002', 'U002', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U002', N'Chờ xác nhận', '2026-09-29 15:00:00', NULL, NULL, '2026-09-29 15:00:00'),
+        ('D002', 'T001', 'U001', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U001', N'Đã xác nhận', '2026-09-29 14:30:00', '2026-09-29 15:30:00', NULL, '2026-09-29 14:30:00');
+      
+      -- ==================== NOTIFICATIONS ====================
+      CREATE TABLE notifications (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        type NVARCHAR(50) NOT NULL,
+        message NVARCHAR(500) NOT NULL,
+        related_ticket_id VARCHAR(10),
+        is_read BIT DEFAULT 0,
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (related_ticket_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO notifications (id, user_id, type, message, related_ticket_id, is_read, created_at)
+      VALUES 
+        ('N001', 'U001', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T001', 0, '2026-09-29 15:00:00'),
+        ('N002', 'U002', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T002', 0, '2026-09-29 15:00:00'),
+        ('N003', 'U001', 'deposit_confirmed', N'Đặt cọc của bạn đã được xác nhận. Hẹn gặp bạn lúc 19:00!', 'T001', 0, '2026-09-29 15:30:00');
+      
+      -- ==================== RESTAURANT TABLES ====================
+      CREATE TABLE restaurant_tables (
+        id INT PRIMARY KEY,
+        capacity INT DEFAULT 2,
+        status NVARCHAR(50) DEFAULT N'available',
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO restaurant_tables (id, capacity, status, created_at, updated_at)
+      VALUES 
+        (1, 2, N'available', '2024-01-01', '2024-01-01'),
+        (2, 2, N'available', '2024-01-01', '2024-01-01'),
+        (3, 2, N'available', '2024-01-01', '2024-01-01'),
+        (4, 2, N'available', '2024-01-01', '2024-01-01'),
+        (5, 2, N'occupied', '2024-01-01', '2026-09-29 15:00:00'),
+        (6, 2, N'available', '2024-01-01', '2024-01-01'),
+        (7, 2, N'available', '2024-01-01', '2024-01-01'),
+        (8, 2, N'available', '2024-01-01', '2024-01-01'),
+        (9, 2, N'available', '2024-01-01', '2024-01-01'),
+        (10, 2, N'available', '2024-01-01', '2024-01-01');
+      
+      -- ==================== TABLE ASSIGNMENTS ====================
+      CREATE TABLE table_assignments (
+        id INT PRIMARY KEY IDENTITY(1,1),
+        table_id INT NOT NULL,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10) NOT NULL,
+        assigned_date DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (table_id) REFERENCES restaurant_tables(id),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO table_assignments (table_id, ticket1_id, ticket2_id, assigned_date)
+      VALUES 
+        (5, 'T001', 'T002', '2026-09-29 14:00:00');
+      
+      -- ==================== ADMIN ACCOUNTS ====================
+      CREATE TABLE admin_accounts (
+        id VARCHAR(10) PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        role NVARCHAR(50) DEFAULT N'admin',
+        created_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO admin_accounts (id, username, password, name, role, created_at)
+      VALUES 
+        ('ADMIN001', 'admin', 'admin123', N'Quản trị viên', N'admin', '2024-01-01'),
+        ('ADMIN002', 'admin2', 'admin456', N'Trợ lý quản trị', N'admin', '2024-02-01');
+      
+      -- ==================== INDEXES ====================
+      CREATE INDEX idx_users_phone ON users(phone);
+      CREATE INDEX idx_tickets_user_id ON tickets(user_id);
+      CREATE INDEX idx_tickets_status ON tickets(status);
+      CREATE INDEX idx_tickets_date_time ON tickets(date_time);
+      CREATE INDEX idx_ticket_requests_status ON ticket_requests(status);
+      CREATE INDEX idx_deposits_ticket_id ON deposits(ticket_id);
+      CREATE INDEX idx_deposits_status ON deposits(status);
+      CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+      CREATE INDEX idx_notifications_is_read ON notifications(is_read);      -- PARICHA - Quán ăn ghép đôi Database
+      
+      -- ==================== USERS ====================
+      CREATE TABLE users (
+        id VARCHAR(10) PRIMARY KEY,
+        phone VARCHAR(20) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        gender NVARCHAR(20),
+        dob DATE,
+        email VARCHAR(100),
+        interests NVARCHAR(500),
+        reputation INT DEFAULT 100,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO users (id, phone, password, name, gender, dob, email, interests, reputation, created_at, updated_at)
+      VALUES 
+        ('U001', '0912345678', '123456', N'Nguyễn Văn A', N'Nam', '1998-05-15', 'nguyenvana@example.com', N'Thích du lịch, âm nhạc, phim', 100, '2024-01-15', '2024-01-15'),
+        ('U002', '0987654321', '123456', N'Trần Thị B', N'Nữ', '2000-08-20', 'tranthib@example.com', N'Yêu thích ẩm thực, yoga, đọc sách', 95, '2024-02-10', '2024-02-10'),
+        ('U003', '0901234567', '123456', N'Lê Minh C', N'Nam', '1999-03-10', 'leminhc@example.com', N'Thích phim, công nghệ, du lịch', 100, '2024-03-05', '2024-03-05'),
+        ('U004', '0934567890', '123456', N'Phạm Hương D', N'Nữ', '2001-07-22', 'phamhuong@example.com', N'Yêu thích nấu ăn, thể thao, âm nhạc', 98, '2024-04-12', '2024-04-12');
+      
+      -- ==================== TICKETS ====================
+      CREATE TABLE tickets (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        date_time DATETIME NOT NULL,
+        gender_req NVARCHAR(20),
+        age_req NVARCHAR(20),
+        interest_req NVARCHAR(500),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Đang chờ',
+        matched_ticket_id VARCHAR(10),
+        matched_user_id VARCHAR(10),
+        partner_gender_req NVARCHAR(20),
+        partner_age_req NVARCHAR(20),
+        partner_interest_req NVARCHAR(500),
+        deposit_status NVARCHAR(50),
+        deposit_ref_code VARCHAR(50),
+        table_assigned INT,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (matched_user_id) REFERENCES users(id),
+        FOREIGN KEY (table_assigned) REFERENCES restaurant_tables(id)
+      );
+      
+      INSERT INTO tickets (id, user_id, date_time, gender_req, age_req, interest_req, status, matched_ticket_id, matched_user_id, partner_gender_req, partner_age_req, partner_interest_req, deposit_status, deposit_ref_code, table_assigned, created_at, updated_at)
+      VALUES 
+        ('T001', 'U001', '2026-10-05 19:00:00', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Ghép thành công', 'T002', 'U002', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', 'Đã cọc', 'PARICHA20261005U001', 5, '2026-09-29 10:00:00', '2026-09-29 15:00:00'),
+        ('T002', 'U002', '2026-10-05 19:00:00', N'Nam', N'18-25', N'Thích âm nhạc, du lịch', N'Ghép thành công', 'T001', 'U001', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Chờ cọc', 'PARICHA20261005U002', 5, '2026-09-29 11:30:00', '2026-09-29 15:00:00'),
+        ('T003', 'U003', '2026-10-06 19:30:00', N'Nữ', N'26-35', N'Thích công nghệ, phim', N'Đang chờ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-29 12:00:00', '2026-09-29 12:00:00');
+      
+      -- ==================== TICKET REQUESTS ====================
+      CREATE TABLE ticket_requests (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket1_user_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10),
+        ticket2_user_id VARCHAR(10),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ duyệt',
+        match_percentage INT,
+        reason_for_match NVARCHAR(500),
+        requested_at DATETIME DEFAULT GETDATE(),
+        reviewed_at DATETIME,
+        reviewed_by VARCHAR(10),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket1_user_id) REFERENCES users(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO ticket_requests (id, ticket1_id, ticket1_user_id, ticket2_id, ticket2_user_id, status, match_percentage, reason_for_match, requested_at, reviewed_at, reviewed_by)
+      VALUES 
+        ('TR001', 'T001', 'U001', 'T002', 'U002', N'Chấp thuận', 85, N'Cùng sở thích du lịch, âm nhạc, độ tuổi phù hợp', '2026-09-29 12:00:00', '2026-09-29 14:00:00', 'ADMIN001'),
+        ('TR002', 'T003', 'U003', NULL, NULL, N'Chờ duyệt', NULL, NULL, '2026-09-29 12:00:00', NULL, NULL);
+      
+      -- ==================== DEPOSITS ====================
+      CREATE TABLE deposits (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket_id VARCHAR(10) NOT NULL,
+        user_id VARCHAR(10) NOT NULL,
+        amount INT DEFAULT 50000,
+        bank_name NVARCHAR(100),
+        account_number VARCHAR(50),
+        account_holder NVARCHAR(100),
+        reference_code VARCHAR(50) NOT NULL UNIQUE,
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ xác nhận',
+        transaction_date DATETIME,
+        confirmed_at DATETIME,
+        notes NVARCHAR(500),
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (ticket_id) REFERENCES tickets(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO deposits (id, ticket_id, user_id, amount, bank_name, account_number, account_holder, reference_code, status, transaction_date, confirmed_at, notes, created_at)
+      VALUES 
+        ('D001', 'T002', 'U002', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U002', N'Chờ xác nhận', '2026-09-29 15:00:00', NULL, NULL, '2026-09-29 15:00:00'),
+        ('D002', 'T001', 'U001', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U001', N'Đã xác nhận', '2026-09-29 14:30:00', '2026-09-29 15:30:00', NULL, '2026-09-29 14:30:00');
+      
+      -- ==================== NOTIFICATIONS ====================
+      CREATE TABLE notifications (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        type NVARCHAR(50) NOT NULL,
+        message NVARCHAR(500) NOT NULL,
+        related_ticket_id VARCHAR(10),
+        is_read BIT DEFAULT 0,
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (related_ticket_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO notifications (id, user_id, type, message, related_ticket_id, is_read, created_at)
+      VALUES 
+        ('N001', 'U001', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T001', 0, '2026-09-29 15:00:00'),
+        ('N002', 'U002', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T002', 0, '2026-09-29 15:00:00'),
+        ('N003', 'U001', 'deposit_confirmed', N'Đặt cọc của bạn đã được xác nhận. Hẹn gặp bạn lúc 19:00!', 'T001', 0, '2026-09-29 15:30:00');
+      
+      -- ==================== RESTAURANT TABLES ====================
+      CREATE TABLE restaurant_tables (
+        id INT PRIMARY KEY,
+        capacity INT DEFAULT 2,
+        status NVARCHAR(50) DEFAULT N'available',
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO restaurant_tables (id, capacity, status, created_at, updated_at)
+      VALUES 
+        (1, 2, N'available', '2024-01-01', '2024-01-01'),
+        (2, 2, N'available', '2024-01-01', '2024-01-01'),
+        (3, 2, N'available', '2024-01-01', '2024-01-01'),
+        (4, 2, N'available', '2024-01-01', '2024-01-01'),
+        (5, 2, N'occupied', '2024-01-01', '2026-09-29 15:00:00'),
+        (6, 2, N'available', '2024-01-01', '2024-01-01'),
+        (7, 2, N'available', '2024-01-01', '2024-01-01'),
+        (8, 2, N'available', '2024-01-01', '2024-01-01'),
+        (9, 2, N'available', '2024-01-01', '2024-01-01'),
+        (10, 2, N'available', '2024-01-01', '2024-01-01');
+      
+      -- ==================== TABLE ASSIGNMENTS ====================
+      CREATE TABLE table_assignments (
+        id INT PRIMARY KEY IDENTITY(1,1),
+        table_id INT NOT NULL,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10) NOT NULL,
+        assigned_date DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (table_id) REFERENCES restaurant_tables(id),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO table_assignments (table_id, ticket1_id, ticket2_id, assigned_date)
+      VALUES 
+        (5, 'T001', 'T002', '2026-09-29 14:00:00');
+      
+      -- ==================== ADMIN ACCOUNTS ====================
+      CREATE TABLE admin_accounts (
+        id VARCHAR(10) PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        role NVARCHAR(50) DEFAULT N'admin',
+        created_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO admin_accounts (id, username, password, name, role, created_at)
+      VALUES 
+        ('ADMIN001', 'admin', 'admin123', N'Quản trị viên', N'admin', '2024-01-01'),
+        ('ADMIN002', 'admin2', 'admin456', N'Trợ lý quản trị', N'admin', '2024-02-01');
+      
+      -- ==================== INDEXES ====================
+      CREATE INDEX idx_users_phone ON users(phone);
+      CREATE INDEX idx_tickets_user_id ON tickets(user_id);
+      CREATE INDEX idx_tickets_status ON tickets(status);
+      CREATE INDEX idx_tickets_date_time ON tickets(date_time);
+      CREATE INDEX idx_ticket_requests_status ON ticket_requests(status);
+      CREATE INDEX idx_deposits_ticket_id ON deposits(ticket_id);
+      CREATE INDEX idx_deposits_status ON deposits(status);
+      CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+      CREATE INDEX idx_notifications_is_read ON notifications(is_read);      -- PARICHA - Quán ăn ghép đôi Database
+      
+      -- ==================== USERS ====================
+      CREATE TABLE users (
+        id VARCHAR(10) PRIMARY KEY,
+        phone VARCHAR(20) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        gender NVARCHAR(20),
+        dob DATE,
+        email VARCHAR(100),
+        interests NVARCHAR(500),
+        reputation INT DEFAULT 100,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO users (id, phone, password, name, gender, dob, email, interests, reputation, created_at, updated_at)
+      VALUES 
+        ('U001', '0912345678', '123456', N'Nguyễn Văn A', N'Nam', '1998-05-15', 'nguyenvana@example.com', N'Thích du lịch, âm nhạc, phim', 100, '2024-01-15', '2024-01-15'),
+        ('U002', '0987654321', '123456', N'Trần Thị B', N'Nữ', '2000-08-20', 'tranthib@example.com', N'Yêu thích ẩm thực, yoga, đọc sách', 95, '2024-02-10', '2024-02-10'),
+        ('U003', '0901234567', '123456', N'Lê Minh C', N'Nam', '1999-03-10', 'leminhc@example.com', N'Thích phim, công nghệ, du lịch', 100, '2024-03-05', '2024-03-05'),
+        ('U004', '0934567890', '123456', N'Phạm Hương D', N'Nữ', '2001-07-22', 'phamhuong@example.com', N'Yêu thích nấu ăn, thể thao, âm nhạc', 98, '2024-04-12', '2024-04-12');
+      
+      -- ==================== TICKETS ====================
+      CREATE TABLE tickets (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        date_time DATETIME NOT NULL,
+        gender_req NVARCHAR(20),
+        age_req NVARCHAR(20),
+        interest_req NVARCHAR(500),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Đang chờ',
+        matched_ticket_id VARCHAR(10),
+        matched_user_id VARCHAR(10),
+        partner_gender_req NVARCHAR(20),
+        partner_age_req NVARCHAR(20),
+        partner_interest_req NVARCHAR(500),
+        deposit_status NVARCHAR(50),
+        deposit_ref_code VARCHAR(50),
+        table_assigned INT,
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (matched_user_id) REFERENCES users(id),
+        FOREIGN KEY (table_assigned) REFERENCES restaurant_tables(id)
+      );
+      
+      INSERT INTO tickets (id, user_id, date_time, gender_req, age_req, interest_req, status, matched_ticket_id, matched_user_id, partner_gender_req, partner_age_req, partner_interest_req, deposit_status, deposit_ref_code, table_assigned, created_at, updated_at)
+      VALUES 
+        ('T001', 'U001', '2026-10-05 19:00:00', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Ghép thành công', 'T002', 'U002', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', 'Đã cọc', 'PARICHA20261005U001', 5, '2026-09-29 10:00:00', '2026-09-29 15:00:00'),
+        ('T002', 'U002', '2026-10-05 19:00:00', N'Nam', N'18-25', N'Thích âm nhạc, du lịch', N'Ghép thành công', 'T001', 'U001', N'Nữ', N'18-25', N'Thích trò chuyện, tính cách vui vẻ', N'Chờ cọc', 'PARICHA20261005U002', 5, '2026-09-29 11:30:00', '2026-09-29 15:00:00'),
+        ('T003', 'U003', '2026-10-06 19:30:00', N'Nữ', N'26-35', N'Thích công nghệ, phim', N'Đang chờ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-29 12:00:00', '2026-09-29 12:00:00');
+      
+      -- ==================== TICKET REQUESTS ====================
+      CREATE TABLE ticket_requests (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket1_user_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10),
+        ticket2_user_id VARCHAR(10),
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ duyệt',
+        match_percentage INT,
+        reason_for_match NVARCHAR(500),
+        requested_at DATETIME DEFAULT GETDATE(),
+        reviewed_at DATETIME,
+        reviewed_by VARCHAR(10),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket1_user_id) REFERENCES users(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO ticket_requests (id, ticket1_id, ticket1_user_id, ticket2_id, ticket2_user_id, status, match_percentage, reason_for_match, requested_at, reviewed_at, reviewed_by)
+      VALUES 
+        ('TR001', 'T001', 'U001', 'T002', 'U002', N'Chấp thuận', 85, N'Cùng sở thích du lịch, âm nhạc, độ tuổi phù hợp', '2026-09-29 12:00:00', '2026-09-29 14:00:00', 'ADMIN001'),
+        ('TR002', 'T003', 'U003', NULL, NULL, N'Chờ duyệt', NULL, NULL, '2026-09-29 12:00:00', NULL, NULL);
+      
+      -- ==================== DEPOSITS ====================
+      CREATE TABLE deposits (
+        id VARCHAR(10) PRIMARY KEY,
+        ticket_id VARCHAR(10) NOT NULL,
+        user_id VARCHAR(10) NOT NULL,
+        amount INT DEFAULT 50000,
+        bank_name NVARCHAR(100),
+        account_number VARCHAR(50),
+        account_holder NVARCHAR(100),
+        reference_code VARCHAR(50) NOT NULL UNIQUE,
+        status NVARCHAR(50) NOT NULL DEFAULT N'Chờ xác nhận',
+        transaction_date DATETIME,
+        confirmed_at DATETIME,
+        notes NVARCHAR(500),
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (ticket_id) REFERENCES tickets(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+      );
+      
+      INSERT INTO deposits (id, ticket_id, user_id, amount, bank_name, account_number, account_holder, reference_code, status, transaction_date, confirmed_at, notes, created_at)
+      VALUES 
+        ('D001', 'T002', 'U002', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U002', N'Chờ xác nhận', '2026-09-29 15:00:00', NULL, NULL, '2026-09-29 15:00:00'),
+        ('D002', 'T001', 'U001', 50000, N'Vietcombank', '1234567890', 'PARICHA', 'PARICHA20261005U001', N'Đã xác nhận', '2026-09-29 14:30:00', '2026-09-29 15:30:00', NULL, '2026-09-29 14:30:00');
+      
+      -- ==================== NOTIFICATIONS ====================
+      CREATE TABLE notifications (
+        id VARCHAR(10) PRIMARY KEY,
+        user_id VARCHAR(10) NOT NULL,
+        type NVARCHAR(50) NOT NULL,
+        message NVARCHAR(500) NOT NULL,
+        related_ticket_id VARCHAR(10),
+        is_read BIT DEFAULT 0,
+        created_at DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (related_ticket_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO notifications (id, user_id, type, message, related_ticket_id, is_read, created_at)
+      VALUES 
+        ('N001', 'U001', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T001', 0, '2026-09-29 15:00:00'),
+        ('N002', 'U002', 'ticket_matched', N'Phiếu của bạn đã ghép thành công với một khách khác!', 'T002', 0, '2026-09-29 15:00:00'),
+        ('N003', 'U001', 'deposit_confirmed', N'Đặt cọc của bạn đã được xác nhận. Hẹn gặp bạn lúc 19:00!', 'T001', 0, '2026-09-29 15:30:00');
+      
+      -- ==================== RESTAURANT TABLES ====================
+      CREATE TABLE restaurant_tables (
+        id INT PRIMARY KEY,
+        capacity INT DEFAULT 2,
+        status NVARCHAR(50) DEFAULT N'available',
+        created_at DATETIME DEFAULT GETDATE(),
+        updated_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO restaurant_tables (id, capacity, status, created_at, updated_at)
+      VALUES 
+        (1, 2, N'available', '2024-01-01', '2024-01-01'),
+        (2, 2, N'available', '2024-01-01', '2024-01-01'),
+        (3, 2, N'available', '2024-01-01', '2024-01-01'),
+        (4, 2, N'available', '2024-01-01', '2024-01-01'),
+        (5, 2, N'occupied', '2024-01-01', '2026-09-29 15:00:00'),
+        (6, 2, N'available', '2024-01-01', '2024-01-01'),
+        (7, 2, N'available', '2024-01-01', '2024-01-01'),
+        (8, 2, N'available', '2024-01-01', '2024-01-01'),
+        (9, 2, N'available', '2024-01-01', '2024-01-01'),
+        (10, 2, N'available', '2024-01-01', '2024-01-01');
+      
+      -- ==================== TABLE ASSIGNMENTS ====================
+      CREATE TABLE table_assignments (
+        id INT PRIMARY KEY IDENTITY(1,1),
+        table_id INT NOT NULL,
+        ticket1_id VARCHAR(10) NOT NULL,
+        ticket2_id VARCHAR(10) NOT NULL,
+        assigned_date DATETIME DEFAULT GETDATE(),
+        FOREIGN KEY (table_id) REFERENCES restaurant_tables(id),
+        FOREIGN KEY (ticket1_id) REFERENCES tickets(id),
+        FOREIGN KEY (ticket2_id) REFERENCES tickets(id)
+      );
+      
+      INSERT INTO table_assignments (table_id, ticket1_id, ticket2_id, assigned_date)
+      VALUES 
+        (5, 'T001', 'T002', '2026-09-29 14:00:00');
+      
+      -- ==================== ADMIN ACCOUNTS ====================
+      CREATE TABLE admin_accounts (
+        id VARCHAR(10) PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        name NVARCHAR(100) NOT NULL,
+        role NVARCHAR(50) DEFAULT N'admin',
+        created_at DATETIME DEFAULT GETDATE()
+      );
+      
+      INSERT INTO admin_accounts (id, username, password, name, role, created_at)
+      VALUES 
+        ('ADMIN001', 'admin', 'admin123', N'Quản trị viên', N'admin', '2024-01-01'),
+        ('ADMIN002', 'admin2', 'admin456', N'Trợ lý quản trị', N'admin', '2024-02-01');
+      
+      -- ==================== INDEXES ====================
+      CREATE INDEX idx_users_phone ON users(phone);
+      CREATE INDEX idx_tickets_user_id ON tickets(user_id);
+      CREATE INDEX idx_tickets_status ON tickets(status);
+      CREATE INDEX idx_tickets_date_time ON tickets(date_time);
+      CREATE INDEX idx_ticket_requests_status ON ticket_requests(status);
+      CREATE INDEX idx_deposits_ticket_id ON deposits(ticket_id);
+      CREATE INDEX idx_deposits_status ON deposits(status);
+      CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+      CREATE INDEX idx_notifications_is_read ON notifications(is_read);"></label>
+      <label>Email<input id="profileEmail" type="email" placeholder="email@example.com"></label>
+      <label>Sở thích cá nhân
+        <textarea id="profileInterests" maxlength="500" placeholder="Nói về bản thân bạn..."></textarea>
+      </label>
+      <button type="submit">Lưu thay đổi</button>
+      <button type="button" id="logoutBtn" class="secondary">Đăng xuất</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
